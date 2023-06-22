@@ -1,51 +1,54 @@
 export default function CurrentSchedule(props) {
-  // const [allHours, setAllHours] = useState([]);
-  // useEffect(() => {
-  //   const
-  // });
-  const { newEmployee, setNewEmployee } = props
+  const { employees } = props
 
+  console.log('Current Employees', employees);
 
-  let currentEmployees = JSON.parse(localStorage.getItem('employee'))
+  const newEmployeeSchedule = employees.map(employee => {
+    let fullName = `${employee.firstName} ${employee.lastName}`
+    let mondaySchedule 
+    if(!mondaySchedule === undefined) {
+      mondaySchedule = `${employee.schedules[0].monday.beginningTime} - ${employee.schedules[0].monday.endingTime}`
+      console.log('Monday Schedule:', mondaySchedule)
+    }
 
-  // setNewEmployee(currentEmployees)
-  console.log('Current Employees', currentEmployees);
-
-  const newEmployeeSchedule = currentEmployees.map(employee => {
-        // let employeeSchedule = JSON.parse(localStorage.getItem(`schedule${employee.firstName}`))
-        // let mondaySchedule = `${employeeKeyName.beggingTime}:00 - ${employeeKeyName.endingTime}:00`;
-        return (
-          <tr key={employee.id}>
-            <td>{employee.id}</td>
-            <td>{employee.firstName}</td>
-            {/* <td>{mondaySchedule}</td> */}
-          </tr>
+    console.log(mondaySchedule);
+    return (
+      <tr key={employee._id}>
+        <td>{fullName}</td>
+        <td>{mondaySchedule}</td>
+      </tr>
         )
         })
 
+  return (
+    <section>
+      <ul>
+        <a href="currentSchedule/year">Year</a>
+      </ul>
+    </section>
+  );
   
 
-  return (
-    <section className="current-schedule-section">
-      <a href="/addEmployee">Add Employee</a>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thurday</th>
-            <th>Friday</th>
-            <th>Saturday</th>
-            <th>Sunday</th>
-          </tr>
-        </thead>
-            <tbody>
-              {newEmployeeSchedule}
-            </tbody>
-      </table>
-    </section>
-  )
+  // return (
+  //   <section className="current-schedule-section">
+  //     <a href="/addEmployee">Add Employee</a>
+  //     <table>
+  //       <thead>
+  //         <tr>
+  //           <th>Name</th>
+  //           <th>Monday</th>
+  //           <th>Tuesday</th>
+  //           <th>Wednesday</th>
+  //           <th>Thurday</th>
+  //           <th>Friday</th>
+  //           <th>Saturday</th>
+  //           <th>Sunday</th>
+  //         </tr>
+  //       </thead>
+  //           <tbody>
+  //             {newEmployeeSchedule}
+  //           </tbody>
+  //     </table>
+  //   </section>
+  // )
 }
