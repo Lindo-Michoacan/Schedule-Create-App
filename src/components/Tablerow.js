@@ -4,8 +4,7 @@ export default function Tablerow(props) {
   const { employee } = props
 
   return (
-      <tr key={employee.id}>
-        <td>{employee.id}</td>
+      <tr>
         <td>{employee.firstName}</td>
         <td><Day employee={employee} day={'monday'} /></td>
         <td><Day employee={employee} day={'tuesday'} /></td>
@@ -14,6 +13,8 @@ export default function Tablerow(props) {
         <td><Day employee={employee} day={'friday'} /></td>
         <td><Day employee={employee} day={'saturday'} /></td>
         <td><Day employee={employee} day={'sunday'} /></td>
+        <td>Hours</td>
+
       </tr>
 
   )

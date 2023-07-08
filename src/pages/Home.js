@@ -1,9 +1,8 @@
-import Employees from "../components/Employees"
 
 export default function Home() {
   return (
       <section>
-        <Employees />
+        <h1>Home</h1>
       </section>
   )
 }

@@ -1,22 +1,20 @@
-import employeesData from "../data/employeesData";
+export default function Employees(props){
+  const { employees, addToListEmployee } = props;
+  const employeesInfo = employees.map(employee => {
 
-export default function Employees(){
-  const employeesInfo = employeesData.map(employee => {
     return (
-      <ul className="employee-info">
-        <li key={employee.id}>
-          {employee.name}
+        <li key={employee._id} onClick={() => addToListEmployee(employee)}>
+          {employee.firstName} {employee.lastName}
         </li>
-        <li>
-          {employee.id}
-        </li>
-      </ul>
     )
   })
 
   return (
-    <section className="employees-section">
-      {employeesInfo}
+    <section className="employees-list-section">
+      <h2>List of Employees</h2>
+      <ul>
+        {employeesInfo}
+      </ul>
     </section>
   )
 }

@@ -75,3 +75,33 @@ td {
   border: 1px solid blue;
   text-align: left;
 }
+
+/* Add Schedule Page */
+
+.add-schedule-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.add-schedule-table-section {
+  display: flex;
+  flex-direction: column;
+  /* width: 70%; */
+  flex-grow: 2;
+  gap: 10px;
+  padding: 1rem;
+}
+
+.employee-list-section {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  /* width: 30%; */
+  border: 3px solid black
+}
+
+.add-employee {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+}

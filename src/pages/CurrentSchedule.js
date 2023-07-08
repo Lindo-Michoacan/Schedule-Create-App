@@ -1,8 +1,6 @@
 export default function CurrentSchedule(props) {
   const { employees } = props
 
-  console.log('Current Employees', employees);
-
   const newEmployeeSchedule = employees.map(employee => {
     let fullName = `${employee.firstName} ${employee.lastName}`
     let mondaySchedule 
@@ -10,8 +8,7 @@ export default function CurrentSchedule(props) {
       mondaySchedule = `${employee.schedules[0].monday.beginningTime} - ${employee.schedules[0].monday.endingTime}`
       console.log('Monday Schedule:', mondaySchedule)
     }
-
-    console.log(mondaySchedule);
+    
     return (
       <tr key={employee._id}>
         <td>{fullName}</td>

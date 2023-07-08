@@ -5,7 +5,8 @@ export default function Day(props) {
   const [schedule, setSchedule] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem(`schedule${employee.firstName}`, JSON.stringify(schedule))
+    // localStorage.setItem(`schedule${employee.firstName}`, JSON.stringify(schedule))
+    console.log('UseEffect: ',schedule)
   }, [schedule])
 
   const submitSchedule = (event) => {
@@ -14,23 +15,27 @@ export default function Day(props) {
     let endingTime = document.querySelector(`#${employee.firstName}-${day}-ending`).value;
     console.log(`On ${day} ${employee.firstName}: ${beggingTime} - ${endingTime}`);
     
-    let scheduleTime = {
-    [`${day}`]: [
-        {
-          day: `${day}`,
-          beggingTime: `${beggingTime}`,
-          endingTime: `${endingTime}`
-        }
-      ]
-    }
-
-    
+    let scheduleTime = [
+      {
+        _id: employee._id,
+        firstName: employee.firstName,
+        lastName: employee.lastName,
+        week: [
+          {
+            [`${day}`]:
+              {
+                day: `${day}`,
+                beggingTime: `${beggingTime}`,
+                endingTime: `${endingTime}`
+              }
+          }
+        ]
+      }
+  ]
     const updatedSchedule = [...schedule, scheduleTime];
       if(!schedule.includes(scheduleTime)) {
       setSchedule(updatedSchedule);
-
       };
-    console.log('This is the schedule: ', schedule)
   }
 
   return (
@@ -66,6 +71,15 @@ export default function Day(props) {
         <option value="18">06:00PM</option>
         <option value="19">07:00PM</option>
         <option value="20">08:00PM</option>
+      </select>
+      <select>
+        <option>Caja 1</option>
+        <option>Caja 2</option>
+        <option>Caja 3</option>
+        <option>Caja 4</option>
+        <option>Caja 5</option>
+        <option>Caja 6</option>
+        <option>Caja 7</option>
       </select>
       <input type="submit" onClick={submitSchedule}/>
     </form>

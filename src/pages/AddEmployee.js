@@ -4,19 +4,43 @@ import { ADD_EMPLOYEE } from '../utils/mutations';
 
 export default function AddEmployee(props) {
   // const {  } = props
-  const addNewEmployee = () => {
-    console.log('1')
+  const [employeeData, setEmployeeData] = useState({
+    firstName: '',
+    lastName: ''
+  });
+
+  const [addNewEmployee] = useMutation(ADD_EMPLOYEE);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setEmployeeData({ ...employeeData, [name]: value})
+  }
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await addNewEmployee({
+        variables: { ...employeeData }
+      })
+    } catch(error) {
+      console.log(error)
+    }
+
+    setEmployeeData({
+      firstName: '',
+      lastName: ''
+    })
   }
 
   return (
-    <form>
+    <form onSubmit={handleFormSubmit}>
       <label>First Name</label>
-      <input type='text' className='first-name-input'/>
+      <input type='text' className='first-name-input' onChange={handleInputChange} name='firstName' value={employeeData.firstName}/>
       <label>Last Name</label>
-      <input type='text' className='last-name-input'/>
+      <input type='text' className='last-name-input' onChange={handleInputChange} name='lastName' value={employeeData.lastName}/>
       {/* <label>Phone Number</label>
       <input type='text' /> */}
-      <input type='submit' value='submit' onClick={addNewEmployee}/>
+      <button type='submit' value='submit'>Submit</button>
     </form>
   );
 };

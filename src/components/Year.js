@@ -58,7 +58,7 @@ export default function Year() {
           </>
         )
 
-      } else if(calendar.__typename === 'Month') {
+      } else if (calendar.__typename === 'Month') {
         return (
           <h1>Month</h1>
         )
