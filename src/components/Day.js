@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 
 export default function Day(props) {
-  const { employee, day } = props;
-  const [schedule, setSchedule] = useState([]);
+  const { employee, day, schedule, setSchedule } = props;
+  // const [schedule, setSchedule] = useState([]);
 
-  useEffect(() => {
-    // localStorage.setItem(`schedule${employee.firstName}`, JSON.stringify(schedule))
-    console.log('UseEffect: ',schedule)
-  }, [schedule])
+  // useEffect(() => {
+  //   // localStorage.setItem(`schedule${employee.firstName}`, JSON.stringify(schedule))
+  //   // console.log('UseEffect: ',schedule)
+  // }, [schedule])
 
   const submitSchedule = (event) => {
     event.preventDefault();

@@ -1,18 +1,47 @@
 import Employee from '../components/Employee';
 import Employees from '../components/Employees';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function AddSchedule(props) {
   const { employees } = props
 
   const [listEmployee, setListEmployee] = useState([])
+  const [schedule, setSchedule] = useState([]);
 
   const addToListEmployee = (employee) => {
     const updatedListEmployee = [...listEmployee, employee]
     if(!listEmployee.includes(employee)) {
       setListEmployee(updatedListEmployee);
+      addEmployeeDataToList(employee)
+    } else {
+      console.log(`${employee.firstName} Its been added`)
     }
   }
+
+  useEffect(() => {
+    // localStorage.setItem(`schedule${employee.firstName}`, JSON.stringify(schedule))
+    console.log('UseEffect: ',schedule)
+  }, [schedule])
+
+  const addEmployeeDataToList = (employee) => {
+    const employeeData =
+      {
+        _id: employee._id,
+        firstName: employee.firstName,
+        lastName: employee.lastName,
+        week: []
+      };
+
+      const updatedEmployeeData = [...schedule, employeeData];
+      if(!schedule.includes(employeeData)) {
+        setSchedule(updatedEmployeeData);
+        console.log('List Not Includes', employee.firstName)
+      } else {
+        console.log(`${employee.firstName} is included on the list`)
+      }
+  }
+
+
   const WeekDate = () => {
     const today = new Date();
     const currentDay = today.getDay();
@@ -22,6 +51,7 @@ export default function AddSchedule(props) {
       const gettingMonday = currentDay - 1;
       const gettingSunday = gettingMonday + 6;
       monday.setDate(monday.getDate() - gettingMonday);
+      // sunday.setDate(gettingSunday);
       sunday.setDate(gettingSunday);
     }
 
@@ -59,13 +89,13 @@ export default function AddSchedule(props) {
             </tr>
           </thead>
           <tbody>
-            <Employee listEmployee={listEmployee} />
+            <Employee listEmployee={listEmployee} schedule={schedule} setSchedule={setSchedule} />
           </tbody>
         </table>
       </section>
       <section className='employee-list-section'>
         <a className='add-employee' href="/addEmployee">Add Employee</a>
-        <Employees employees={employees} addToListEmployee={addToListEmployee} />
+        <Employees employees={employees} addToListEmployee={addToListEmployee} addEmployeeDataToList={addEmployeeDataToList} />
       </section>
     </section>
   )
