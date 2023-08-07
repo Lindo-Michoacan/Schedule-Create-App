@@ -7,12 +7,13 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+
 function App() {
   return (
     <ApolloProvider client={client
     }>
       <div className="App">
-        <NavBar/>
+        <NavBar />
       </div>
     </ApolloProvider>
   );

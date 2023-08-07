@@ -1,24 +1,8 @@
 import { useState, useEffect } from 'react';
-import { QUERY_YEARS, QUERY_YEAR } from '../utils/queries';
-import { useQuery, useLazyQuery } from '@apollo/client';
 
-export default function Year() {
-  const getAllYears = useQuery(QUERY_YEARS, {
-    onCompleted: (yearData) => {
-      console.log(yearData);
-    },
-    onError: (errorData) => {
-      console.log(errorData);
-    }
-  });
-  const [getYearData] = useLazyQuery(QUERY_YEAR, {
-    onCompleted: (calendarData) => {
-      console.log(calendarData)
-    },
-    onError: (errorData) => {
-      console.log(errorData)
-    }
-  });
+export default function Year(props) {
+  const { getYearData, years } = props
+
   const [calendar, setCalendar] = useState('');
 
   useEffect(()=> {
@@ -33,7 +17,7 @@ export default function Year() {
 
   }, [calendar]);
   
-  const years = getAllYears.data?.years || [];;
+  // const years = getAllYears.data?.years || [];
   // const months = calendar.months
 
   const selectingYear = (yearDate) => {

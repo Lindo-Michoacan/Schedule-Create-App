@@ -36,10 +36,11 @@ export const QUERY_EMPLOYEES = gql`
       lastName
       schedules {
         _id
+        scheduleDate
         monday {
-          cashRegister
-          beginningTime
-          endingTime
+          mondayCashRegister
+          mondayBeginningTime
+          mondayEndingTime
         }
       }
     }
@@ -56,41 +57,15 @@ export const QUERY_EMPLOYEE = gql`
       _id
       scheduleDate
       monday {
-        cashRegister
-        beginningTime
-        endingTime
+        mondayCashRegister
+        mondayBeginningTime
+        monadyEndingTime
       }
       tuesday {
-        cashRegister
-        beginningTime
-        endingTime
+        tuesdayCashRegister
+        tuesdayBeginningTime
+        tuesdayEndingTime
       }
-      wednesday {
-        cashRegister
-        beginningTime
-        endingTime
-      }
-      thursday {
-        cashRegister
-        beginningTime
-        endingTime
-      }
-      friday {
-        cashRegister
-        beginningTime
-        endingTime
-      }
-      saturday {
-        cashRegister
-        beginningTime
-        endingTime
-      }
-      sunday {
-        cashRegister
-        beginningTime
-        endingTime
-      }
-      totalHours
     }
   }
 }
